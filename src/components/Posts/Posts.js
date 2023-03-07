@@ -6,7 +6,7 @@ import {useEffect} from "react";
 
 function Posts(){
 	
-const [posts,setPosts]=useState('');
+const [posts,setPosts]=useState([]);
 
  const fetchData= () => {
 	 fetch('https://jsonplaceholder.typicode.com/posts').then((response)=>response.json()).then((data)=>setPosts(data)

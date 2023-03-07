@@ -2,54 +2,9 @@ import {Component} from "react";
 import ReactDOM from "react-dom";
 import {useState} from "react";
 import {useEffect} from "react";
-import Posts from "../Posts/Posts";
+import {Routes,Route,useNavigate} from 'react-router-dom';
+import LoginAuthentication from "../LoginAuthentication/LoginAuthentication";
 import "./Login.css";
-
-function LoginUser(props){
-
-    const [user,setUser]=useState([]);
-    const [message,setMessage]=useState([]);
-
-    const fetchData= () => {
-        return fetch('https://jsonplaceholder.typicode.com/users').then((response)=>response.json()).then((data)=>setUser(data)
-        
-        );
-        }
-        
-        useEffect(()=>{
-            fetchData();
-    
-        },[])
-        return(
-            <div>
-                    
-           
-                 {user && user.length>0 && user.map((dataObj,index)=>{
-                   
-                    if(dataObj.username==props.username){
-                        
-                        return <Posts />
-                        
-                    }
-
-                 })}
-                
-                {/* setMessage('Invalid username!'); */}
-                <h2>{message}</h2>
-                <Login />
-                 
-                
-               
-            </div>
-            );
-       
-    
-    
-    
-    
-
-}
-
 
 
 
@@ -57,10 +12,14 @@ function Login(){
 
     const [username,setUsername]=useState('');
     const [message,setMessage]=useState('');
+    const navigate=useNavigate();
 
+    
     const updateSubmit=(event)=>{
       event.preventDefault();
-      ReactDOM.render(<LoginUser username={username}/>,document.getElementById('root'));
+      
+      navigate('/loginauthentication',{state:{username:username},});
+      /*ReactDOM.render(<LoginAuthentication username={username}/>,document.getElementById('root')); */
         
         
         
