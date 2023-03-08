@@ -12,7 +12,7 @@ const Navbar = () => {
           <MenuLink to="/posts" activeStyle>
             Blogs
           </MenuLink>
-          <MenuLink to="/login" activeStyle>
+          <MenuLink to="/myposts" activeStyle>
             MyBlogs
           </MenuLink>
           <MenuLink to="/login" activeStyle>

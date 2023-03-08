@@ -1,18 +1,22 @@
-import {Component} from "react";
+import {Component, useContext} from "react";
 import ReactDOM from "react-dom";
 import {useState} from "react";
 import {useEffect} from "react";
 import Posts from "../Posts/Posts";
-import Login from "../Login/Login"
-import {Routes,Route,useNavigate,useLocation} from 'react-router-dom';
+import Login from "../Login/Login";
+import View from "../View";
+import {Routes,Route,useNavigate,useLocation, Navigate} from 'react-router-dom';
+import {userId,Context} from '../Context';
 
 function LoginAuthentication(){
     
-    const [user,setUser]=useState([]);
+    var count=0;
+    var active=0;
+    const location=useLocation();
     const navigate=useNavigate();
-    const location = useLocation();
-    const [a,setA]=useState(false);
-
+    const [user,setUser]=useState([]);
+    
+    
     const fetchData= () => {
         return fetch('https://jsonplaceholder.typicode.com/users').then((response)=>response.json()).then((data)=>setUser(data)
         
@@ -23,32 +27,52 @@ function LoginAuthentication(){
             
             fetchData();
 
-            validate();
+          
             
     
         },[])
-       
-        const validate=()=>{
-            
+        return(
+            <>
             {user && user.length>0 && user.map((dataObj,index)=>{
-               
+                count+=1;
+                
                 if(dataObj.username==location.state.username){
+                        localStorage.setItem("authenticated",true);
+                        active=dataObj.id;
+                        
+                        
+                    }
+                else if(count==user.length & active==0){
                    
-                   setA(true);
-                    
+                    active=-1;
+                  
                 }
+                 
+                
 
             })}
+            
+            {active>=1 &&
+            (<userId.Provider value={active}>
+              
+              <Posts />
+            </userId.Provider>)}
+            
+            {active<0 &&
+             
+             <Login />}
+           
 
-            if(a){
-                navigate('/posts');
-            }
-            else{
-                alert(a);
-                navigate('/login');
-            }
+            </>
 
-        }
+
+
+        );
+      
+            
+            
+
+     
        
     
     

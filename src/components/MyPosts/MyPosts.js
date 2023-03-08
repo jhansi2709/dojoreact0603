@@ -1,11 +1,10 @@
 import React from "react";
-import "./Posts.css";
+import "../Posts/Posts.css";
 import Post from "../Post/Post";
-import MyPosts from "../MyPosts/MyPosts";
 import {useState,useContext} from "react";
 import {useEffect} from "react";
 import {userId} from '../Context';
-function Posts(){
+function MyPosts(){
 	
 const [posts,setPosts]=useState([]);
 const id=useContext(userId);
@@ -21,15 +20,15 @@ const id=useContext(userId);
 
 	},[])
 	
-	const onSubmit=()=>{
-		return <MyPosts />
+    const onSubmit=()=>{
+            
 
-	};
+    };
    
 return (
 	<div className="posts-container">
-		<button type="submit" onClick={onSubmit}>My Posts</button>
-	{id!=0 && posts.filter(p=>p.userId!=id).map((post, index) => (
+		<button type="submit" onClick={onSubmit}>Add Post</button>
+	{posts.filter(p=>p.userId==id).map((post, index) => (
 		
 		
 		<Post key={post.id} index={index} post={post} />
@@ -39,4 +38,4 @@ return (
 );
 };
 
-export default Posts;
+export default MyPosts;

@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import Posts from "./components/Posts/Posts";
+import MyPosts from "./components/MyPosts/MyPosts";
 import Login from "./components/Login/Login";
 import LoginAuthentication from "./components/LoginAuthentication/LoginAuthentication";
 import Home from "./components/Home/Home";
@@ -19,6 +20,7 @@ function App(){
                     <Route path='/' exact element={<Home />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/posts' element={<Posts />} />
+                    <Route path='/myposts' element={<MyPosts />} />
                     <Route path='/loginauthentication' element={<LoginAuthentication />} />
                   </Routes>
                 </Router>

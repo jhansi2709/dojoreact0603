@@ -1,27 +1,29 @@
 import {Component} from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import {useState} from "react";
 import {useEffect} from "react";
 import {Routes,Route,useNavigate} from 'react-router-dom';
 import LoginAuthentication from "../LoginAuthentication/LoginAuthentication";
 import "./Login.css";
-
+import {Context} from '../Context';
 
 
 function Login(){
 
     const [username,setUsername]=useState('');
-    const [message,setMessage]=useState('');
-    const navigate=useNavigate();
+    /* const [active,setActive]=useState(false); */
+    const navigate=useNavigate(); 
 
-    
     const updateSubmit=(event)=>{
       event.preventDefault();
+           
+              /*setActive(true);  */ 
+                navigate('/loginauthentication',{state:{username:username},});
+                 
       
-      navigate('/loginauthentication',{state:{username:username},});
       /*ReactDOM.render(<LoginAuthentication username={username}/>,document.getElementById('root')); */
-        
-        
+         
         
     };
     
@@ -42,7 +44,12 @@ function Login(){
                 <input type="submit" value="Submit"/>
                 </div>
             </form>
-            <h2>{message}</h2>
+            {/*<h2>{message}</h2> 
+            {active &&
+            (<Context.Provider value={username}>
+              
+              <LoginAuthentication />
+            </Context.Provider>)} */}
             
             </div>
 
