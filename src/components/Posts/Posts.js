@@ -8,6 +8,7 @@ import {userId} from '../Context';
 function Posts(){
 	
 const [posts,setPosts]=useState([]);
+const [comments,setComments]=useState([]);
 const id=useContext(userId);
 
  const fetchData= () => {
@@ -15,9 +16,16 @@ const id=useContext(userId);
 	
 	);
 	}
+
+	const fetchDa= () => {
+		fetch('https://jsonplaceholder.typicode.com/comments').then((response)=>response.json()).then((data)=>setComments(data)
+	   
+	   );
+	   }
 	
 	useEffect(()=>{
 		fetchData();
+		fetchDa();
 
 	},[])
 	
@@ -32,7 +40,7 @@ return (
 	{id!=0 && posts.filter(p=>p.userId!=id).map((post, index) => (
 		
 		
-		<Post key={post.id} index={index} post={post} />
+		<Post key={post.id} index={index} post={post}/>
 		 
 		))}
 	</div>

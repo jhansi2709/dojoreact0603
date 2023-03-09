@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {useState} from "react";
 import {useEffect} from "react";
 import Posts from "../Posts/Posts";
+import MyPosts from "../MyPosts/MyPosts";
 import Login from "../Login/Login";
 import View from "../View";
 import {Routes,Route,useNavigate,useLocation, Navigate} from 'react-router-dom';
@@ -55,7 +56,7 @@ function LoginAuthentication(){
             {active>=1 &&
             (<userId.Provider value={active}>
               
-              <Posts />
+              <MyPosts />
             </userId.Provider>)}
             
             {active<0 &&
