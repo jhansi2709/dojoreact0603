@@ -7,18 +7,21 @@ const Navbar = () => {
         <Hamburger />
         <Menu>
           <MenuLink to="/" activeStyle>
-            Home
-          </MenuLink>
-          <MenuLink to="/posts" activeStyle>
-            Blogs
-          </MenuLink>
-          <MenuLink to="/myposts" activeStyle>
-            MyBlogs
+            Welcome to Blog App
           </MenuLink>
           <MenuLink to="/login" activeStyle>
             Login
           </MenuLink>
-          
+          <MenuLink to="/posts" activeStyle>
+            Blogs
+          </MenuLink>
+          <MenuLink to="/posts" activeStyle>
+            MyBlogs
+          </MenuLink>
+          <MenuLink to="/comments" activeStyle>
+            Comments
+          </MenuLink>
+        
         </Menu>
       </PrimaryNav>
     </>

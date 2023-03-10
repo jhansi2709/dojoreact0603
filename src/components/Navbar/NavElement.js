@@ -1,4 +1,3 @@
-import { FaBars } from 'react-icons/fa'
 import styled from 'styled-components'
 import { NavLink as Link } from 'react-router-dom'
 export const PrimaryNav = styled.nav`
@@ -21,7 +20,7 @@ export const MenuLink = styled(Link)`
     color: #000000;
   }
 `
-export const Hamburger = styled(FaBars)`
+export const Hamburger = styled(Link)`
   display: none;
   color: #ffffff;
   @media screen and (max-width: 768px) {

@@ -1,60 +1,54 @@
-import {Component} from "react";
-import React from "react";
-import ReactDOM from "react-dom";
-import {useState} from "react";
-import {useEffect} from "react";
-import {Routes,Route,useNavigate} from 'react-router-dom';
-import LoginAuthentication from "../LoginAuthentication/LoginAuthentication";
-import "./Login.css";
-import {Context} from '../Context';
+import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
 
-
-function Login(){
-
-    const [username,setUsername]=useState('');
-    /* const [active,setActive]=useState(false); */
-    const navigate=useNavigate(); 
-
-    const updateSubmit=(event)=>{
-      event.preventDefault();
-           
-              /*setActive(true);  */ 
-                navigate('/loginauthentication',{state:{username:username},});
-                 
-      
-      /*ReactDOM.render(<LoginAuthentication username={username}/>,document.getElementById('root')); */
-         
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        username: ''
         
-    };
-    
-            return(
+      };
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-              <div className="main-container">
-                
-             
-            <form onSubmit={updateSubmit}>
-                <div>
-                <label> Enter Username</label>
-                </div>
-                <div>
-                <input type="text" id="username" name="username" value={username} placeholder="username"
-                onChange={(event)=>setUsername(event.target.value) }/>
-                </div>
-                <div>
-                <input type="submit" value="Submit"/>
-                </div>
-            </form>
-            {/*<h2>{message}</h2> 
-            {active &&
-            (<Context.Provider value={username}>
-              
-              <LoginAuthentication />
-            </Context.Provider>)} */}
-            
-            </div>
+  onSubmit(e) {
+    e.preventDefault();
+    this.props.onSubmit(e);
+    const username=this.state.username
+  }
+  render() {
+    const mystyle = {
+        
+        backgroundColor: "Grey",
+        padding: "20px",
+        textAlign: "center"
+      };
 
-
-        );
-
+    return (
+        <div style={mystyle}>
+            <h1>Sign In</h1>
+        <form onSubmit={this.onSubmit}>
+          <div >
+            <label>Username: </label>
+            <br />
+            <input
+              type="text"
+              name="username"
+              onChange={this.onChange}
+              value={this.state.title}
+            />
+          </div>
+          
+          <br />
+          <Button variant="primary" type="submit">Login</Button>{''}
+        </form>
+        </div>
+     
+    );
+  }
 }
+
 export default Login;
