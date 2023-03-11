@@ -1,5 +1,6 @@
 import {
     FETCH_POSTS,
+    FETCH_POSTS_SELF,
     NEW_POST,
     FETCH_COMMENTS,
     NEW_COMMENT
@@ -7,6 +8,7 @@ import {
 
 const initialState = {
     items: [],
+    myps: [],
     item: {},
     comments:[],
     comment:{}
@@ -19,6 +21,11 @@ export default function (state = initialState, action) {
                 ...state,
                 items: action.payload
             };
+        case FETCH_POSTS_SELF:
+            return {
+                ...state,
+                myps: action.payload
+            };    
         case NEW_POST:
             return {
                 ...state,

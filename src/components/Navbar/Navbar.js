@@ -15,12 +15,12 @@ const Navbar = () => {
           <MenuLink to="/posts" activeStyle>
             Blogs
           </MenuLink>
-          <MenuLink to="/posts" activeStyle>
+          <MenuLink to="/myposts" activeStyle>
             MyBlogs
           </MenuLink>
-          <MenuLink to="/comments" activeStyle>
+           {/* <MenuLink to="/comments" activeStyle>
             Comments
-          </MenuLink>
+          </MenuLink> */}
         
         </Menu>
       </PrimaryNav>

@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchComments } from '../actions/CommentAction';
 
+
+
 class Comments extends Component {
   componentDidMount() {
-    this.props.fetchComments();
+    const id=this.props.cid;
+    
+    this.props.fetchComments(id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,4 +45,4 @@ const mapStateToProps = state => ({
   newComment: state.posts.comment
 });
 
-export default connect(mapStateToProps, { fetchComments })(Comments);
+export  default connect(mapStateToProps, { fetchComments })(Comments);

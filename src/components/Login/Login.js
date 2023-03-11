@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
+import './Login.css';
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        username: ''
-        
-      };
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+function Login(){
+  
+    
+  const [username,setUsername]=useState('');
+    const navigate=useNavigate(); 
 
-  onSubmit(e) {
-    e.preventDefault();
-    this.props.onSubmit(e);
-    const username=this.state.username
-  }
-  render() {
+    const onSubmit=(event)=>{
+      event.preventDefault();
+           
+              /*setActive(true);  */ 
+                navigate('/loginv',{state:{username:username},});
+
+    }
+                 
     const mystyle = {
         
         backgroundColor: "Grey",
@@ -30,16 +28,13 @@ class Login extends Component {
     return (
         <div style={mystyle}>
             <h1>Sign In</h1>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={onSubmit}>
           <div >
             <label>Username: </label>
             <br />
-            <input
-              type="text"
-              name="username"
-              onChange={this.onChange}
-              value={this.state.title}
-            />
+            
+            <input type="text" id="username" name="username" value={username} placeholder="username"
+                onChange={(event)=>setUsername(event.target.value) }/>
           </div>
           
           <br />
@@ -49,6 +44,6 @@ class Login extends Component {
      
     );
   }
-}
+
 
 export default Login;

@@ -1,41 +1,54 @@
-import React from "react";
-import "../Posts/Posts.css";
-import Post from "../Post/Post";
-import {useState,useContext} from "react";
-import {useEffect} from "react";
-import {userId} from '../Context';
-function MyPosts(){
-	
-const [posts,setPosts]=useState([]);
-const id=useContext(userId);
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
+import { fetchPostsSelf } from '../../actions/PostAction';
+import Postform from '../Postform';
+import Comments from '../Comments';
+import {useEffect,useRef} from 'react';
 
- const fetchData= () => {
-	 fetch('https://jsonplaceholder.typicode.com/posts').then((response)=>response.json()).then((data)=>setPosts(data)
-	
-	);
-	}
-	
-	useEffect(()=>{
-		fetchData();
 
-	},[])
-	
-    const onSubmit=()=>{
-            
+class MyPosts extends Component {
+  componentDidMount() {
+    this.props.fetchPostsSelf(1);
+  }
 
-    };
-   
-return (
-	<div className="posts-container">
-		<button type="submit" onClick={onSubmit}>Add Post</button>
-	{posts.filter(p=>p.userId==id).map((post, index) => (
-		
-		
-		<Post key={post.id} index={index} post={post} />
-		 
-		))}
-	</div>
-);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.newPost) {
+      this.props.posts.unshift(nextProps.newPost);
+    }
+  }
+
+render(){
+  const postItems = this.props.posts.map(post => (
+      <div key={post.id}>
+        <h3>{post.title}</h3>
+        <p>{post.body}</p>
+        <Link to={"/comments/" +post.id} >View Comments</Link>
+        
+      </div>
+    ));
+    return (
+      
+      <div>
+        
+        <h1>Posts</h1>
+        {postItems}
+        
+      </div>
+    );
+  }
+}
+
+MyPosts.propTypes = {
+  fetchPostsSelf: PropTypes.func.isRequired,
+  posts: PropTypes.array.isRequired,
+  newPost: PropTypes.object
 };
 
-export default MyPosts;
+const mapStateToProps = state => ({
+  posts: state.posts.myps,
+  newPost: state.posts.item
+});
+
+export default connect(mapStateToProps, { fetchPostsSelf })(MyPosts);

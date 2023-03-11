@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/PostAction';
 import Postform from './Postform';
+import {Link} from 'react-router-dom'
 
 
 class Posts extends Component {
@@ -21,6 +22,7 @@ class Posts extends Component {
       <div key={post.id}>
         <h3>{post.title}</h3>
         <p>{post.body}</p>
+        <Link to={"/comments/" +post.id} >View Comments</Link>
       </div>
     ));
     return (

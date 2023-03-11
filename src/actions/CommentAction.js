@@ -1,7 +1,8 @@
 import {FETCH_COMMENTS, NEW_COMMENT} from "./types";
 
-export const fetchComments = () => dispatch => {
-    fetch('https://jsonplaceholder.typicode.com/comments')
+export const fetchComments = id => dispatch => {
+    const url='https://jsonplaceholder.typicode.com/posts/'+id+'/comments';
+    fetch(url)
         .then(res => res.json())
         .then(comm =>
             dispatch({

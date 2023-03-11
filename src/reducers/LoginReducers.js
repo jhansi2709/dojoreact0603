@@ -5,20 +5,17 @@ import  {
 } from '../actions/types';
 
 const initState = {
-  username: ''
+  user: []
 };
 
 export default function loginReducer(state = initState, action) {
   switch (action.type) {
     case LOGIN_SEND_DATA:
-      return Object.assign({}, ...state, {
-        username : action.data.username
-      });
+        return {
+            ...state,
+            user: action.payload
+        };
      
-    case LOGIN_RECEIVE_DATA_SUCCESS:
-      return [...state, action.data];
-    case LOGIN_RECEIVE_DATA_FAILURE:
-      return [ ...state, action.data ];
     default:
       return state;
   }

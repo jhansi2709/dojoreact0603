@@ -1,5 +1,5 @@
 import {
-    FETCH_POSTS,
+    FETCH_POSTS,FETCH_POSTS_SELF,
     NEW_POST
 } from './types';
 
@@ -13,6 +13,18 @@ export const fetchPosts = () => dispatch => {
             })
         );
 };
+
+export const fetchPostsSelf = (id) => dispatch => {
+    fetch('https://jsonplaceholder.typicode.com/posts?userId='+id)
+        .then(res => res.json())
+        .then(postsself =>
+            dispatch({
+                type: FETCH_POSTS_SELF,
+                payload: postsself
+            })
+        );
+};
+
 
  export const createPost = postData => dispatch => {
      fetch('https://jsonplaceholder.typicode.com/posts', {
