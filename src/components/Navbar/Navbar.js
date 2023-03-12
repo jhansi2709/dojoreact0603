@@ -1,6 +1,10 @@
 import React from 'react'
 import { PrimaryNav, MenuLink, Menu, Hamburger } from './NavElement'
-const Navbar = () => {
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+
+function Navbar(props){
   return (
     <>
       <PrimaryNav>
@@ -9,15 +13,24 @@ const Navbar = () => {
           <MenuLink to="/" activeStyle>
             Welcome to Blog App
           </MenuLink>
+          {props.userd  &&  !props.userd.length>0 &&
           <MenuLink to="/login" activeStyle>
             Login
-          </MenuLink>
+          </MenuLink>}
+          {!props.userd  &&  
+          <MenuLink to="/login" activeStyle>
+            Login
+          </MenuLink>}
           <MenuLink to="/posts" activeStyle>
             Blogs
           </MenuLink>
           <MenuLink to="/myposts" activeStyle>
             MyBlogs
           </MenuLink>
+          {props.userd && props.userd.length>0 &&
+          <MenuLink to="/logout" activeStyle>
+            Logout
+          </MenuLink>}
            {/* <MenuLink to="/comments" activeStyle>
             Comments
           </MenuLink> */}
@@ -27,4 +40,18 @@ const Navbar = () => {
     </>
   )
 }
-export default Navbar
+
+
+Navbar.propTypes = {
+  userd: PropTypes.array.isRequired
+};
+
+
+const mapStateToProps = state => ({
+  userd: state.login.user
+  
+});
+
+
+export default connect(mapStateToProps, {  })(Navbar);
+

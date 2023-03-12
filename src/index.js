@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
 import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
 import Login from './components/Login/Login';
@@ -22,4 +21,3 @@ root.render(
                     </Provider>
                 </React.StrictMode>
 );
-//registerServiceWorker();

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Login from '../components/Login/Login';
-import Posts from '../components/Posts';
+import PostDisplay from '../components/PostDisplay';
 import LoginActions from '../actions/LoginAction';
 
 import PropTypes from 'prop-types';
@@ -25,9 +25,13 @@ function LoginAuthentication(props){
 
     return(
         <>
-        {props.userd.length>0 && <Posts /> }
+        {props.userd  && props.userd.length>0 && <PostDisplay /> }
           {/* {alert(props.userd.username)} */}
+          {!props.userd.length>0 && 
+          <>
+          <h3 style={{textAlign: "center",color: "red"}}> Invalid Username! Please Try Again</h3>
           <Login />
+          </>}
         </>
 
     )
@@ -35,7 +39,7 @@ function LoginAuthentication(props){
 
 LoginAuthentication.propTypes = {
   fetchUser: PropTypes.func.isRequired,
-  userd: PropTypes.array.isRequired
+  userd: PropTypes.array
 };
 
 

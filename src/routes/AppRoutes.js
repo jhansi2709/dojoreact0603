@@ -5,19 +5,10 @@ import PostDisplay from '../components/PostDisplay';
 import MyPostDisplay from '../components/MyPosts/MyPostDisplay';
 import CommentsDisplay from '../components/CommentsDisplay';
 import LoginAuthentication from '../components/LoginAuthentication';
+import Logout from '../components/Logout';
 import Login from '../components/Login/Login';
-import PrivateRoute from './PrivateRoute';
 
-/* const PrivateRoute = ({ component: Component, session, ...rest}) => {
-  
-  const isValidSession = (props) => {
-    if (session.isAuthenticated) {
-      return (<Component {...props} />);
-    }
-    //return (<Navigate to={{ pathname: '/login', state: { from: path1 } }} />);
-  };
-  return (<Route {...rest} render={isValidSession} />);
-}; */
+
 
 const AppRoutes = ({ session },{path1}) => (
   
@@ -25,8 +16,9 @@ const AppRoutes = ({ session },{path1}) => (
      <Navbar />
     <Routes>
                    
-    <Route path="/posts" element={<PrivateRoute  component={PostDisplay}  session={session}/>}/>
+    <Route path="/posts" element={<PostDisplay/>} />
     <Route path="/login" element={<Login />}/>
+    <Route path="/logout" element={<Logout />}/>
     <Route path="/loginv" element={<LoginAuthentication />}/>
     <Route path="/myposts" element={<MyPostDisplay />}/>
     <Route path="/comments/:id"   element={<CommentsDisplay  />}  />

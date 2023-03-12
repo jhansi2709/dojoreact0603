@@ -10,7 +10,12 @@ import {useEffect,useRef} from 'react';
 
 class MyPosts extends Component {
   componentDidMount() {
-    this.props.fetchPostsSelf(1);
+    const u=this.props.userd.map(user=>(
+      
+      
+      this.props.fetchPostsSelf(user.id)
+    ));
+    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,12 +48,14 @@ render(){
 MyPosts.propTypes = {
   fetchPostsSelf: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired,
-  newPost: PropTypes.object
+  newPost: PropTypes.object,
+  userd: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
   posts: state.posts.myps,
-  newPost: state.posts.item
+  newPost: state.posts.item,
+  userd: state.login.user
 });
 
 export default connect(mapStateToProps, { fetchPostsSelf })(MyPosts);

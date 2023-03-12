@@ -1,7 +1,5 @@
 import  {
-  LOGIN_SEND_DATA,
-  LOGIN_RECEIVE_DATA_SUCCESS,
-  LOGIN_RECEIVE_DATA_FAILURE,
+  LOGIN_SEND_DATA,LOGIN_SEND_SESSION,LOGIN_RESET_DATA,
 } from '../actions/types';
 
 const initState = {
@@ -10,13 +8,24 @@ const initState = {
 
 export default function loginReducer(state = initState, action) {
   switch (action.type) {
+    case LOGIN_RESET_DATA: 
+        return {
+          ...initState,
+          user: action.payload
+        };
     case LOGIN_SEND_DATA:
         return {
             ...state,
             user: action.payload
         };
-     
-    default:
+    case LOGIN_SEND_SESSION:
+        return {
+            undefined
+        };
+
+     default:
       return state;
   }
 }
+
+
